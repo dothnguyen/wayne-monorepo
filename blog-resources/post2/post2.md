@@ -21,12 +21,17 @@ So in my project, I create a few more scss files to structure the css styles:
  
 With _theme.scss, I’ll define my own colors, and also import spectre’s _variables.scss. This will ensure that my variables will override what are in spectre’s.
 
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post2/1.png?raw=true)
 
 With _spectre-ext.scss, I put my additional styles (the ones that are not in spectre CSS)
 Some of them are as follow:
 
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post2/2.png?raw=true)
 
 Finally I will include the two files along with Spectre modules in my styles.scss, and also add app-specific styles.
 
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post2/3.png?raw=true)
 
 This is how a Spectre CSS page look
+
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post2/4%20%28Small%29.png?raw=true)
