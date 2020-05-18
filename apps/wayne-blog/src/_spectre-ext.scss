@@ -1,0 +1,35 @@
+@import './theme';
+@import '../../../node_modules/spectre.css/src/mixins';
+
+// I need more padding variants
+@include margin-variant(3, $unit-3);
+@include margin-variant(4, $unit-4);
+@include margin-variant(5, $unit-5);
+@include padding-variant(3, $unit-3);
+@include padding-variant(4, $unit-4);
+@include padding-variant(5, $unit-5);
+@include padding-variant(6, $unit-6);
+
+// I need variant to specify the width of a flex item
+@mixin flex-width-variant($id: 10) {
+  .flex-width-#{$id} {
+    flex: 0 0 $id * 1%;
+  }
+}
+
+@include flex-width-variant(10);
+@include flex-width-variant(15);
+@include flex-width-variant(20);
+@include flex-width-variant(25);
+@include flex-width-variant(30);
+@include flex-width-variant(40);
+@include flex-width-variant(50);
+
+.flex-full-width {
+  width: unset;
+  flex: 1;
+}
+
+.flex-vertical {
+  flex-direction: column;
+}
