@@ -39,6 +39,7 @@
     "@angular/router": "^9.1.0",
     "@nrwl/angular": "^9.3.0",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
     "rxjs": "~6.5.4",
     "spectre.css": "^0.5.8",
     "zone.js": "^0.10.2"
