@@ -1,6 +1,6 @@
 <div class="columns col-gapless">
   <div class="column col-6 col-md-8 col-sm-12 col-mx-auto">
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (submit)="login()">
       <div class="panel mt-5">
         <div class="panel-header">
           <div class="panel-title text-primary"><h2>Login to Post</h2></div>
@@ -34,8 +34,9 @@
         <div class="panel-footer">
           <button
             type="submit"
-            [disabled]="!loginForm.valid"
+            [disabled]="!loginForm.valid || loading"
             class="btn btn-primary btn-block"
+            [class.loading]="loading"
           >
             Login
           </button>
