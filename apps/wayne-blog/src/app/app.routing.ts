@@ -5,8 +5,13 @@ import { CommonModule } from '@angular/common';
 
 const appRoutes: Routes = [
   {
-      path: '',
-      component: BlogHomeComponent
+    path: '',
+    component: BlogHomeComponent,
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'admin',
