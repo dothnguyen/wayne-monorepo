@@ -10,6 +10,10 @@ import { delay } from 'rxjs/operators';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  // if there is error
+  hasError = false;
+  errorMsg = "";
+
   // loading status
   loading = false;
 
@@ -27,21 +31,33 @@ export class LoginComponent implements OnInit {
     // change to loading status
     this.loading = true;
 
-    this.auth.login(this.loginForm.value).pipe(delay(2000)).subscribe(
-      (u) => {
-        // finish processing
-        this.loading = false;
+    this.auth
+      .login(this.loginForm.value)
+      .subscribe(
+        (u) => {
+          // finish processing
+          this.loading = false;
 
-        // if login succesfully => go to admin module
-        this.router.navigate(['/admin']);
-      },
-      (error) => {
-        // capture login error -> to show error message
-        // TODO 
+          // if login succesfully => go to admin module
+          this.router.navigate(['/admin']);
+        },
+        (error) => {
+          // capture login error -> to show error message
+          this.hasError = true;
+          this.errorMsg = "Something went wrong. Please try again.";
 
-        // finish processing
-        this.loading = false;
-      }
-    );
+          if (
+            (error.code && (error.code === 'auth/user-not-found') ||
+            error.code === 'auth/wrong-password')
+          ) {
+            this.errorMsg = "Wrong username or password";
+          }
+          // wait for 2s before close the error message
+          setTimeout(() => this.hasError = false, 5000);
+
+          // finish processing
+          this.loading = false;
+        }
+      );
   }
 }

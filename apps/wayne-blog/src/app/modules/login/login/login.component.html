@@ -6,7 +6,17 @@
           <div class="panel-title text-primary"><h2>Login to Post</h2></div>
         </div>
         <div class="panel-body">
-          <div class="form-group" [class.has-error]="loginForm.get('username').touched && !loginForm.get('username').valid">
+          <div class="toast toast-error mb-5" *ngIf="hasError">
+            {{errorMsg}}
+          </div>
+
+          <div
+            class="form-group"
+            [class.has-error]="
+              loginForm.get('username').touched &&
+              !loginForm.get('username').valid
+            "
+          >
             <label class="form-label" for="username">User Name</label>
             <input
               class="form-input"
@@ -15,12 +25,23 @@
               placeholder="User Name"
               formControlName="username"
             />
-            <p *ngIf="loginForm.get('username').touched && !loginForm.get('username').valid"
-                class="form-input-hint">
-                Please enter a valid email.
+            <p
+              *ngIf="
+                loginForm.get('username').touched &&
+                !loginForm.get('username').valid
+              "
+              class="form-input-hint"
+            >
+              Please enter a valid email.
             </p>
           </div>
-          <div class="form-group" [class.has-error]="loginForm.get('password').touched && !loginForm.get('password').valid">
+          <div
+            class="form-group"
+            [class.has-error]="
+              loginForm.get('password').touched &&
+              !loginForm.get('password').valid
+            "
+          >
             <label class="form-label" for="password">Password</label>
             <input
               class="form-input"
