@@ -9,18 +9,21 @@
         <li class="nav-item active"><a class="btn btn-link" routerLink="/">Home</a></li>
         <li class="nav-item"><a href="https://waynedo.azurewebsites.net/" target="_blank" class="btn btn-link">Resume</a></li>
         <li class="nav-item"><a href="https://github.com/dothnguyen" target="_blank" class="btn btn-link">Github</a></li>
-        <li class="nav-item" *ngIf="!auth.isLoggedIn()"><a class="btn btn-link" routerLink="/login">Login</a></li>
-        <li class="nav-item" *ngIf="auth.isLoggedIn()">
-          <div class="dropdown" ><a class="btn btn-link dropdown-toggle" tabindex="0" >
-            <span >UserName</span> <i class="icon icon-caret"></i></a>
-            <ul class="menu">
-              <li class="menu-item" ><a [routerLink]="['/admin']">Admin</a></li>
-              <li class="menu-item"><a [routerLink]="['/profile']">Profile</a></li>
-              <li class="divider"></li>
-              <li class="menu-item"><a href="javascript:void(0);" (click)="logout()">Logout</a></li>
-            </ul>
-          </div>
-        </li>
+        <ng-container *ngIf="(userProfile$ | async) || true; let user">
+          <li class="nav-item" *ngIf="!auth.isLoggedIn()"><a class="btn btn-link" routerLink="/login">Login</a></li>
+          <li class="nav-item" *ngIf="auth.isLoggedIn()">
+            <div class="dropdown" ><a class="btn btn-link dropdown-toggle" tabindex="0" >
+              <span >{{ (user).userName? user.userName : "Welcome" }}</span> <i class="icon icon-caret"></i></a>
+              <ul class="menu">
+                <li class="menu-item" ><a [routerLink]="['/admin']">Admin</a></li>
+                <li class="menu-item"><a [routerLink]="['/profile']">Profile</a></li>
+                <li class="divider"></li>
+                <li class="menu-item"><a href="javascript:void(0);" (click)="logout()">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ng-container>
+        
       </ul>
       
     </section>

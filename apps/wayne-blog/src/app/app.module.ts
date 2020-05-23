@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { BlogHomeComponent } from './modules/blog/blog-home/blog-home.component';
 import { AppRoutingModule } from './app.routing';
 import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, BlogHomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   providers: [],
