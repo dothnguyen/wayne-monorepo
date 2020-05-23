@@ -57,6 +57,8 @@ Then in error check, it will be
 ```
 Let’s test
 
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post7/post7.gif?raw=true)
+
 2️⃣ Another scenario in my blog is that when I reload the page, I don’t want to login again if I already logged in. To do that, I already store user information in localStorage if you still remember the login method in AuthService
 ```javascript
 login(value: { username: string; password: string }) {
@@ -157,3 +159,5 @@ logout() {
   }
 ```
 Now let’s test
+
+![enter image description here](https://github.com/dothnguyen/wayne-monorepo/blob/blog-posts/blog-resources/post7/post7_2.gif?raw=true)
