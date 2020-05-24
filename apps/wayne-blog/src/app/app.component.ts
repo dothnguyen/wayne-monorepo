@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from './core/services/user.service';
-import { switchMap, filter, tap } from 'rxjs/operators';
+import { switchMap, filter, tap, take, flatMap } from 'rxjs/operators';
 import { Observable, of, from } from 'rxjs';
 import { UserProfile } from './core/models/user-profile';
 
@@ -21,13 +21,18 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.userProfile$ = this.auth.currentUser$.pipe(
-    //   switchMap((userInfo) => {
-    //     if (!userInfo)
-    //       return of(null);
-    //     return this.userService.getUser(userInfo.uid);
-    //   })
-    // );
+    this.auth.currentUser$
+      .pipe(
+        flatMap((user) => {
+          if (user) {
+            return this.userService.getUser(user.uid);
+          } else {
+            return of(new UserProfile());
+          }
+        }),
+        take(1) // only take the first one that is from localstorage
+      )
+      .subscribe();
 
     this.userProfile$ = this.userService.currentProfile$;
   }
