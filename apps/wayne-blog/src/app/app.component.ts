@@ -23,14 +23,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.auth.currentUser$
       .pipe(
+        take(1), // only take the first one that is from localstorage
         flatMap((user) => {
           if (user) {
             return this.userService.getUser(user.uid);
           } else {
             return of(new UserProfile());
           }
-        }),
-        take(1) // only take the first one that is from localstorage
+        })
       )
       .subscribe();
 
