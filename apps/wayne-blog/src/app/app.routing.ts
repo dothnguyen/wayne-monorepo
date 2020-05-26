@@ -2,11 +2,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlogHomeComponent } from './modules/blog/blog-home/blog-home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PostsHomeComponent } from './modules/blog/posts-home/posts-home.component';
+import { PostReadComponent } from './modules/blog/post-read/post-read.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     component: BlogHomeComponent,
+    children: [
+      {path: '', component: PostsHomeComponent},
+      {path: 'post/:id', component: PostReadComponent}
+    ]
   },
   {
     path: 'login',
